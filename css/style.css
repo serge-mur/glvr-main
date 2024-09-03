@@ -1,0 +1,59 @@
+body {
+    font-family: 'Graphik LCG';
+}
+
+/* container */
+.true-container {
+    max-width: calc(1360px + 40px * 2);
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+@media (max-width: 991px) {
+    .true-container {
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 575px) {
+    .true-container {
+        padding: 0 20px;
+    }
+}
+
+/* main slider */
+.main-slider {
+    width: 100%;
+}
+
+.main-slider__content {}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.main-slider__thumbs {
+    height: 20%;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+
+.main-slider__thumbs .swiper-slide {
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
+}
+
+.main-slider__thumbs .swiper-slide-thumb-active {
+    opacity: 1;
+}
