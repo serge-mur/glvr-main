@@ -20,16 +20,31 @@ body {
         padding: 0 20px;
     }
 }
-
+.header, .footer {
+    height: 100px;
+    background: peachpuff linear-gradient(90deg,
+    rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, .4) 50%
+  ) center center / 2em;
+}
 /* main slider */
 .main-slider {
     width: 100%;
 }
 
-/* slide content  */
-.main-slider__content {}
+/* slider content */
+@media (max-width: 991px) {
+    .main-slider__content {
+        margin: 0 -30px;
+    }
+}
+@media (max-width: 575px) {
+    .main-slider__content {
+        margin: 0 -20px;
+    }
+}
 
-.main-slider__content .slide-content {
+/* slide content  */
+.slide-content {
     position: relative;
 }
 .slide-content__img {
@@ -37,6 +52,14 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.slide-content__overlay {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(360deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
 }
 .slide-content__wrapper {
     position: absolute;
@@ -47,6 +70,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+}
+@media (max-width: 991px) {
+    .slide-content__wrapper {
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
 }
 .slide-content__logo {
     display: block;
@@ -83,6 +113,13 @@ body {
     font-weight: 400;
     line-height: 20px;
     padding: 15px 26px;
+    background: url(../img/arrow_next_button.svg) no-repeat center right 26px;
+    padding-right: 55px;
+}
+@media (max-width: 991px) {
+    .slide-content__link-bz {
+        margin-bottom: 42px;
+    }
 }
 .slide-content__text {
     color: #FFFFFF;
@@ -104,13 +141,22 @@ body {
 
 /* thumbs */
 .main-slider__thumbs {
-    height: 65px;
+    height: 78px;
+    padding: 0 22%;
 }
-@media (min-width: 992px) {
+.slide-logo {
+    cursor: pointer;
+}
+@media (max-width: 575px) {
     .main-slider__thumbs {
-        height: 78px;
-        padding: 0 280px;
-    } 
+        height: 65px;
+        padding: 0;
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+    .slide-logo__img {
+        transform: scale(0.75);
+    }
 }
 
 .main-slider__thumbs .slide-logo {
@@ -122,7 +168,26 @@ body {
     box-sizing: border-box;
     border-bottom: 5px solid transparent;
 }
+.slide-logo.swiper-slide-thumb-active {
+    border-bottom: 5px solid #52525B;
+}
 
 .slide-logo.swiper-slide-thumb-active {
     border-bottom: 5px solid #52525B;
+}
+
+.slide-logo.swiper-slide-thumb-active #gulliver-logo path {
+    fill: #909092;
+}
+.slide-logo.swiper-slide-thumb-active #bb-logo path {
+    fill: #586E8B;
+}
+.slide-logo.swiper-slide-thumb-active #gt-color path {
+    fill: #286961;
+}
+.slide-logo.swiper-slide-thumb-active #glvr-color path {
+    fill: #000000;
+}
+.slide-logo.swiper-slide-thumb-active #jumkey-color path {
+    fill: #CEDC00;
 }
