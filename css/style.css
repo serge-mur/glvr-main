@@ -43,6 +43,14 @@ body {
     }
 }
 
+/* swiper off mobile */
+@media (max-width: 575px) {
+    .main-slider__content .swiper-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 /* slide content  */
 .slide-content {
     position: relative;
