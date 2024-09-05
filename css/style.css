@@ -165,8 +165,12 @@ body {
         position: sticky;
         top: 0;
         z-index: 99999;
+        overflow-x: scroll;
     }
-    .slide-logo__img {
+    .slide-logo {
+        padding: 0 14px;
+    }
+    .slide-logo svg {
         transform: scale(0.75);
     }
 }
