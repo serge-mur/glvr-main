@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     v.onclick = (() => {
       console.log(v.dataset.link);
       window.scrollTo({
-        top: document.querySelector(v.dataset.link).offsetTop + 65,
+        top: document.querySelector(v.dataset.link).offsetTop + 100,
         behavior: "smooth"
       });
       setTimeout(() => {
@@ -75,18 +75,21 @@ function swiperMode() {
         breakpoints: {
           //  >= 576px
           576: {
-            slidesPerView: 5,
+            slidesPerView: 'auto',
           },
         }
       });
       mainSliderContent = new Swiper('.main-slider__content', {
-        slidesPerView: 'auto',
+        slidesPerView: 1,
         thumbs: {
           swiper: mainSliderThumbs,
-          autoScrollOffset: 1
+          // autoScrollOffset: 1
         },
         breakpoints: {
           576: {
+            slidesPerView: 1.03,
+          },
+          992: {
             slidesPerView: 1,
           },
         },
