@@ -249,7 +249,7 @@ body {
         position: sticky;
         top: 0;
         z-index: 99999;
-        overflow-x: scroll;
+        /* overflow-x: scroll; */
     }
     .main-slider__thumbs .swiper-wrapper {
         justify-content: start;

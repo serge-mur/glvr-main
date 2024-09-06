@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
           top: document.querySelector(v.dataset.link).offsetTop + 100,
           behavior: "smooth"
         });
-          menuSection.forEach(j => j.classList.remove('swiper-slide-thumb-active'))
-          v.classList.add('swiper-slide-thumb-active')
+          // menuSection.forEach(j => j.classList.remove('swiper-slide-thumb-active'))
+          // v.classList.add('swiper-slide-thumb-active')
       })
     })
 
@@ -33,7 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 var mainSliderContent;
 var mainSliderThumbs;
+var mainSliderThumbsMobile;
 var init = false;
+var initMobile = false;
 
 function swiperMode() {
   let mobile = window.matchMedia('(min-width: 0px) and (max-width: 575px)');
@@ -44,6 +46,14 @@ function swiperMode() {
   if ((desktop.matches) || (tablet.matches)) {
     if (!init) {
       init = true;
+
+      if (initMobile) {
+        console.log('Destroy MobileSlider');
+        mainSliderThumbsMobile.destroy();
+      }
+
+      console.log('Init DesktopSlider');
+
       mainSliderThumbs = new Swiper(".main-slider__thumbs", {
         slidesPerView: 3.5,
         freeMode: true,
@@ -73,10 +83,23 @@ function swiperMode() {
   }
 
   // Disable (for mobile)
-  else if ((mobile.matches) && init == true) {
-    mainSliderThumbs.destroy();
-    mainSliderContent.destroy();
-    init = false;
+  else if (mobile.matches) {
+    
+    if (init == true) {
+      console.log('Destroy DesktopSlider');
+      mainSliderThumbs.destroy();
+      mainSliderContent.destroy();
+      init = false;
+    }
+
+    if (!initMobile) {
+      console.log('Init MobileSlider');
+      initMobile = true;
+      mainSliderThumbsMobile = new Swiper(".main-slider__thumbs", {
+        slidesPerView: 3.5,
+        freeMode: true,
+      });
+    }
   }
 }
 window.addEventListener('load', function () {
