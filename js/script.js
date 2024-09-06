@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // for clickable event
   menuSection.forEach(v => {
     v.onclick = (() => {
-      console.log(v.dataset.link);
+      // console.log(v.dataset.link);
       window.scrollTo({
         top: document.querySelector(v.dataset.link).offsetTop + 100,
         behavior: "smooth"
