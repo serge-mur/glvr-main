@@ -98,7 +98,17 @@ function swiperMode() {
       mainSliderThumbsMobile = new Swiper(".main-slider__thumbs", {
         slidesPerView: 3.5,
         freeMode: true,
+        // watchSlidesProgress: true,
+        // slideToClickedSlide: true,
       });
+
+      // get active slide element
+      // mainSliderThumbsMobile.on('click', () => {
+      //   const swiperSlides = document.querySelectorAll('.main-slider__thumbs .slide-logo')
+      //   const element = swiperSlides[mainSliderThumbsMobile.activeIndex];
+      //   console.log(element);
+      // });
+
     }
   }
 }
