@@ -1,59 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  let menuSection = document.querySelectorAll('.main-slider__thumbs>.swiper-wrapper>.slide-logo');
+    let menuSection = document.querySelectorAll('.main-slider__thumbs>.swiper-wrapper>.slide-logo');
 
-  // for clickable event
-  menuSection.forEach(v => {
-    v.onclick = (() => {
-      // console.log(v.dataset.link);
-      window.scrollTo({
-        top: document.querySelector(v.dataset.link).offsetTop + 100,
-        behavior: "smooth"
-      });
-      setTimeout(() => {
-        menuSection.forEach(j => j.classList.remove('swiper-slide-thumb-active'))
-        v.classList.add('swiper-slide-thumb-active')
-      }, 300)
+    // for clickable event
+    menuSection.forEach(v => {
+      v.addEventListener('click', (e) => {
+        // console.log(v.dataset.link);
+        window.scrollTo({
+          top: document.querySelector(v.dataset.link).offsetTop + 100,
+          behavior: "smooth"
+        });
+          menuSection.forEach(j => j.classList.remove('swiper-slide-thumb-active'))
+          v.classList.add('swiper-slide-thumb-active')
+      })
     })
-  })
 
-  // for window scrolldown event
+    // for window scrolldown event
+    window.addEventListener("scroll", (e) => {
+      let mainSection = document.querySelectorAll('.main-slider__content>.swiper-wrapper>.slide-content');
 
-  window.onscroll = (() => {
-    let mainSection = document.querySelectorAll('.main-slider__content>.swiper-wrapper>.slide-content');
-
-    mainSection.forEach((v, i) => {
-      let rect = v.getBoundingClientRect().y
-      if (rect < window.innerHeight - 200) {
-        menuSection.forEach(v => v.classList.remove('swiper-slide-thumb-active'))
-        menuSection[i].classList.add('swiper-slide-thumb-active')
-      }
+      mainSection.forEach((v, i) => {
+        let rect = v.getBoundingClientRect().y
+        if (rect < window.innerHeight - 200) {
+          menuSection.forEach(v => v.classList.remove('swiper-slide-thumb-active'))
+          menuSection[i].classList.add('swiper-slide-thumb-active')
+        }
+      })
     })
-  })
 
 
-  // const mainSliderContent = new Swiper(".main-slider__content", {
-  //   slidesPerView: 'auto',
-  //   thumbs: {
-  //     swiper: mainSliderThumbs,
-  //     autoScrollOffset: 1
-  //   },    
-  //   breakpoints: {
-  //     576: {
-  //       slidesPerView: 1, 
-  //     },
-  //   },
-  // });
-  // const mainSliderThumbs = new Swiper(".main-slider__thumbs", {
-  //   slidesPerView: 3.5,
-  //   freeMode: true,
-  //   breakpoints: {
-  //     //  >= 576px
-  //     576: {
-  //       slidesPerView: 5, 
-  //     },
-  //   }
-  // });
 });
 
 var mainSliderContent;
