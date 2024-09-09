@@ -5,39 +5,42 @@ document.addEventListener("DOMContentLoaded", () => {
   let mainSliderThumbsMobile;
   let init = false;
   let initMobile = false;
-
+  
   let menuSection = document.querySelectorAll('.main-slider__thumbs>.swiper-wrapper>.slide-logo');
-
-  // for clickable event
-  menuSection.forEach(v => {
-    v.addEventListener('click', (e) => {
-      // console.log(v.dataset.link);
-      window.scrollTo({
-        top: document.querySelector(v.dataset.link).offsetTop + 100,
-        behavior: "smooth"
-      });
-        // menuSection.forEach(j => j.classList.remove('swiper-slide-thumb-active'))
-        // v.classList.add('swiper-slide-thumb-active')
-    })
-  })
-
-  // for window scrolldown event
-  window.addEventListener("scroll", (e) => {
-    let mainSection = document.querySelectorAll('.main-slider__content>.swiper-wrapper>.slide-content');
-
-    mainSection.forEach((v, i) => {
-      let rect = v.getBoundingClientRect().y
-      if (rect < window.innerHeight - 200) {
-        menuSection.forEach(v => v.classList.remove('swiper-slide-thumb-active'))
-        menuSection[i].classList.add('swiper-slide-thumb-active')
-      }
-    })
-  })
+  let mainSection = document.querySelectorAll('.main-slider__content>.swiper-wrapper>.slide-content');
 
   function swiperMode() {
     let mobile = window.matchMedia('(min-width: 0px) and (max-width: 575px)');
     let tablet = window.matchMedia('(min-width: 576px) and (max-width: 991px)');
     let desktop = window.matchMedia('(min-width: 992px)');
+
+        // for clickable event
+        menuSection.forEach(v => {
+          v.addEventListener('click', (e) => {
+            // console.log(v.dataset.link);
+            if (mobile.matches) {
+              window.scrollTo({
+                top: document.querySelector(v.dataset.link).offsetTop + 100,
+                behavior: "smooth"
+              });
+            }
+              // menuSection.forEach(j => j.classList.remove('swiper-slide-thumb-active'))
+              // v.classList.add('swiper-slide-thumb-active')
+          })
+        })
+      
+        // for window scrolldown event
+        window.addEventListener("scroll", (e) => {
+                
+          mainSection.forEach((v, i) => {
+            let rect = v.getBoundingClientRect().y
+            if ((rect < window.innerHeight - 200) && mobile.matches) {
+              menuSection.forEach(v => v.classList.remove('swiper-slide-thumb-active'))
+              menuSection[i].classList.add('swiper-slide-thumb-active')
+            }
+          })
+        })
+
 
     // Enable (for desktop or tablet)
     if ((desktop.matches) || (tablet.matches)) {
@@ -76,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
             },
           },
         });
+
       }
     }
 
@@ -105,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //   const element = swiperSlides[mainSliderThumbsMobile.activeIndex];
         //   console.log(element);
         // });
+
 
       }
     }
