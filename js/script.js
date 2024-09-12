@@ -9,21 +9,32 @@ document.addEventListener("DOMContentLoaded", () => {
   let menuSection = document.querySelectorAll('.main-slider__thumbs>.swiper-wrapper>.slide-logo');
   let mainSection = document.querySelectorAll('.main-slider__content>.swiper-wrapper>.slide-content');
 
+
   function swiperMode() {
     let mobile = window.matchMedia('(min-width: 0px) and (max-width: 575px)');
     let tablet = window.matchMedia('(min-width: 576px) and (max-width: 991px)');
     let desktop = window.matchMedia('(min-width: 992px)');
-
+    let menuSectionHeight = document.querySelector('.main-slider__thumbs').clientHeight;
+    // console.log('menuSectionHeight=',menuSectionHeight);
+    let offset;
+    let rect = document.querySelector('.main-slider__content').getBoundingClientRect(),
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    offset = rect.top + scrollTop - menuSectionHeight;
+    // console.log(offset);
+    
         // for clickable event
         menuSection.forEach(v => {
           v.addEventListener('click', (e) => {
+            // let offset  = 142;
             // console.log(v.dataset.link);
-            if (mobile.matches) {
-              window.scrollTo({
-                top: document.querySelector(v.dataset.link).offsetTop + 100,
-                behavior: "smooth"
-              });
+            if (mobile.matches || tablet.matches) {
+              // offset  = 62;
             }
+            window.scrollTo({
+              top: document.querySelector(v.dataset.link).offsetTop + offset,
+              behavior: "smooth"
+            });
+            
               // menuSection.forEach(j => j.classList.remove('swiper-slide-thumb-active'))
               // v.classList.add('swiper-slide-thumb-active')
           })
@@ -34,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 
           mainSection.forEach((v, i) => {
             let rect = v.getBoundingClientRect().y
-            if ((rect < window.innerHeight - 200) && mobile.matches) {
+            if ((rect < window.innerHeight - 400) && mobile.matches) { // 200
               menuSection.forEach(v => v.classList.remove('swiper-slide-thumb-active'))
               menuSection[i].classList.add('swiper-slide-thumb-active')
             }
@@ -48,11 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
         init = true;
 
         if (initMobile) {
-          console.log('Destroy MobileSlider');
+          // console.log('Destroy MobileSlider');
           mainSliderThumbsMobile.destroy();
         }
 
-        console.log('Init DesktopSlider');
+        // console.log('Init DesktopSlider');
 
         mainSliderThumbs = new Swiper(".main-slider__thumbs", {
           slidesPerView: 3.5,
@@ -69,6 +80,10 @@ document.addEventListener("DOMContentLoaded", () => {
           thumbs: {
             swiper: mainSliderThumbs,
             // autoScrollOffset: 1
+          },
+          autoplay: {
+            delay: 5000,
+            // disableOnInteraction: false,
           },
           breakpoints: {
             576: {
@@ -87,30 +102,21 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (mobile.matches) {
       
       if (init == true) {
-        console.log('Destroy DesktopSlider');
+        // console.log('Destroy DesktopSlider');
         mainSliderThumbs.destroy();
         mainSliderContent.destroy();
         init = false;
       }
 
       if (!initMobile) {
-        console.log('Init MobileSlider');
+        // console.log('Init MobileSlider');
         initMobile = true;
         mainSliderThumbsMobile = new Swiper(".main-slider__thumbs", {
           slidesPerView: 3.5,
           freeMode: true,
-          // watchSlidesProgress: true,
-          // slideToClickedSlide: true,
+
         });
-
-        // get active slide element
-        // mainSliderThumbsMobile.on('click', () => {
-        //   const swiperSlides = document.querySelectorAll('.main-slider__thumbs .slide-logo')
-        //   const element = swiperSlides[mainSliderThumbsMobile.activeIndex];
-        //   console.log(element);
-        // });
-
-
+          
       }
     }
   }

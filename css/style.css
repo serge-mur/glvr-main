@@ -20,11 +20,20 @@ body {
         padding: 0 20px;
     }
 }
+.pre-header {
+    height: 50px;
+    background-color: antiquewhite;
+}
 .header, .footer {
-    height: 100px;
     background: peachpuff linear-gradient(90deg,
     rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, .4) 50%
   ) center center / 2em;
+}
+.header {
+    height: 300px;
+}
+.footer {
+    height: 400px;    
 }
 /* main slider */
 .main-slider {
